@@ -11,5 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'max-len': [2, 80],
+    'object-curly-spacing': ['error', 'never'],
   },
 };
