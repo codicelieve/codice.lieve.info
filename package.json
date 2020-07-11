@@ -10,5 +10,14 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "matter-js": "^0.14.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvarrazzo/codice.lieve.info.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dvarrazzo/codice.lieve.info/issues"
+  },
+  "homepage": "https://github.com/dvarrazzo/codice.lieve.info#readme"
 }
