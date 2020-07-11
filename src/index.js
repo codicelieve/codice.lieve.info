@@ -1,18 +1,20 @@
-import {Engine, Render, World, Bodies} from "../node_modules/matter-js/build/matter.min.js";
+import {
+  Engine, Render, World, Bodies,
+} from '../node_modules/matter-js/build/matter.min';
 
 // create an engine
-var engine = Engine.create();
+const engine = Engine.create();
 
 // create a renderer
-var render = Render.create({
-    element: document.body,
-    engine: engine
+const render = Render.create({
+  element: document.body,
+  engine,
 });
 
 // create two boxes and a ground
-var boxA = Bodies.rectangle(400, 200, 80, 80);
-var boxB = Bodies.rectangle(450, 50, 80, 80);
-var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+const boxA = Bodies.rectangle(400, 200, 80, 80);
+const boxB = Bodies.rectangle(450, 50, 80, 80);
+const ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
 
 // add all of the bodies to the world
 World.add(engine.world, [boxA, boxB, ground]);
