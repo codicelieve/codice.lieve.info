@@ -1,0 +1,14 @@
+{
+  "name": "codice.lieve.info",
+  "version": "1.0.0",
+  "description": "Codice Lieve Ltd Frontpage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniele Varrazzo",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "matter-js": "^0.14.2"
+  }
+}
