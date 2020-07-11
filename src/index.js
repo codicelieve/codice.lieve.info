@@ -5,7 +5,7 @@ import {
 
 const SCENE_WIDTH = 800;
 const SCENE_HEIGHT = 600;
-const STRING_X = 200;
+const STRING_X = 350;
 const LINKS_NUM = 8;
 const LINKS_SEP = 10;
 const LINKS_LENGTH = 40;
@@ -36,7 +36,7 @@ const string = Composites.stack(
     {
       collisionFilter: {group},
       density: 0.0001,
-    }
+    },
   ),
 );
 Composites.chain(string, 0.5, 0, -0.5, 0,
@@ -70,9 +70,14 @@ Composite.add(string, Constraint.create({
 
 Composite.add(string, balloon);
 
-// Apply a vertical force to the balloon
-Events.on(engine, 'afterUpdate', () => {
+// Apply forces to the balloon
+Events.on(engine, 'afterUpdate', (e) => {
+  // Force upwards
   Body.applyForce(balloon, {x: balloon.position.x, y: -10}, {x: 0, y: -0.001});
+  // Wind force
+  Body.applyForce(balloon,
+    {x: -10, y: balloon.position.y},
+    {x: -0.00002 * (6 + Math.sin(e.timestamp / 1000)), y: 0});
 });
 
 // add all of the bodies to the world
