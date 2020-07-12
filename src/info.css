@@ -30,12 +30,27 @@ div.info {
   top: 100px;
   left: 100px;
   height: 200px;
-  width: 300px;
+  width: 400px;
   background-color: white;
   color: black;
   padding: 1em;
   border-radius: 5px;
+  line-height: 1.5em;
+  font-family: courier new;
   display: none;
+}
+
+div.info h2 {
+  margin-bottom: 0.5em;
+}
+
+div.info ul {
+  padding-left: inherit;
+  margin-top: 0;
+}
+
+div.info a {
+  color: black;
 }
 
 body.info div.info {
