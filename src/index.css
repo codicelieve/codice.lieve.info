@@ -10,7 +10,7 @@ div.footer {
   padding-left: 2em;
   bottom: 20px;
   font-size: 0.75em;
-  font-family: courier new;
+  font-family: "Lucida Console", Courier, monospace;
   background-color: #0f0f13;
   color: white;
 }
