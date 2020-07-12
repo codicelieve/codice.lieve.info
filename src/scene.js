@@ -1,7 +1,9 @@
 import {
   Bodies, Body, Composite, Composites, Constraint, Engine, Events,
-  Mouse, MouseConstraint, Render, World,
+  Mouse, MouseConstraint, Render, Vertices, World,
 } from './matter';
+
+window.decomp = require('poly-decomp');
 
 const SCENE_WIDTH = window.innerWidth;
 const SCENE_HEIGHT = window.innerHeight;
@@ -10,7 +12,6 @@ const LINKS_NUM = 12;
 const LINKS_SEP = 0;
 const LINKS_LENGTH = SCENE_HEIGHT > 600 ? 30 : 20;
 const STRING_WIDTH = 3;
-const BALLOON_SIZE = 80;
 const GROUND_Y = SCENE_HEIGHT - 60;
 
 export default function animateScene(canvas) {
@@ -56,18 +57,24 @@ export default function animateScene(canvas) {
 
   // Attach a balloon to the string
   // TODO: balloon and string shouldn't collide
-  const balloon = Bodies.rectangle(
-    firstLink.position.x - LINKS_LENGTH / 2 - BALLOON_SIZE / 2,
-    firstLink.position.y - BALLOON_SIZE / 2,
-    BALLOON_SIZE, BALLOON_SIZE,
-    {density: 0.0001},
+  const balloon = Bodies.fromVertices(
+    firstLink.position.x - LINKS_LENGTH / 2,
+    firstLink.position.y,
+    Vertices.fromPath(`
+0 0 4.9 -1.8   23.6 -28.5   28.3 -49.1   22.7 -66.7   11 -78.9
+0 -82
+-11 -78.9  -22.7 -66.7  -28.3 -49.1  -23.6 -28.5  -4.9 -1.8 0 0`),
+    {density: 0.0001, collisionFilter: {group}},
   );
+  Body.scale(balloon, 1.4, 1.4); // I made it too small...
+  // Raise up the balloon to align the bottom with the end of the string
+  Body.translate(balloon, {x: 0, y: balloon.position.y - balloon.bounds.max.y});
 
   Composite.add(string, Constraint.create({
     bodyA: firstLink,
     pointA: {x: -LINKS_LENGTH / 2, y: 0},
     bodyB: balloon,
-    pointB: {x: BALLOON_SIZE / 2, y: BALLOON_SIZE / 2},
+    pointB: {x: 0, y: (balloon.bounds.max.y - balloon.bounds.min.y) / 2},
   }));
 
   Composite.add(string, balloon);

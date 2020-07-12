@@ -43,7 +43,7 @@ Matter.Composites = require('../node_modules/matter-js/src/factory/Composites');
 // Matter.Bounds = require('../node_modules/matter-js/src/geometry/Bounds');
 // Matter.Svg = require('../node_modules/matter-js/src/geometry/Svg');
 // Matter.Vector = require('../node_modules/matter-js/src/geometry/Vector');
-// Matter.Vertices = require('../node_modules/matter-js/src/geometry/Vertices');
+Matter.Vertices = require('../node_modules/matter-js/src/geometry/Vertices');
 
 Matter.Render = require('../node_modules/matter-js/src/render/Render');
 // Matter.RenderPixi = require(
