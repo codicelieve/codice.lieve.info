@@ -33,6 +33,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {from: 'assets/robots.txt', to: ''},
+        {from: 'assets/README.md', to: ''},
       ],
     }),
     new HtmlWebpackPlugin({
