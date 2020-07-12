@@ -102,6 +102,5 @@ body.info-out div.info {
   }
   to {
     opacity: 0;
-    transform: translate(0px, 200px);
   }
 }
