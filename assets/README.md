@@ -1,6 +1,4 @@
-.. |build| image:: https://travis-ci.org/codice-lieve/codice.lieve.info.svg?branch=release
-    :target: https://travis-ci.org/codice-lieve/codice.lieve.info
-    :alt: Website build status
+[![Build Status](https://travis-ci.org/codice-lieve/codice.lieve.info.svg?branch=release)](https://travis-ci.org/codice-lieve/codice.lieve.info)
 
 © 2020 Daniele Varrazzo - Codice Lieve Ltd.
 

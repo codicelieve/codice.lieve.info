@@ -20,7 +20,7 @@ and open http://localhost:8080/
 Deployment
 ----------
 
-The `release` branch is automatically [deployed by Travis CI](https://travis-ci.org/codice-lieve/codice.lieve.info).
+Travis CI will [![build](https://travis-ci.org/codice-lieve/codice.lieve.info.svg?branch=master)](https://travis-ci.org/codice-lieve/codice.lieve.info) the code and and deploy automatically the `release` branch.
 
 In order to build the website manually you can run:
 
