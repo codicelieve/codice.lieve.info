@@ -1,7 +1,8 @@
 import './info.css';
 
-export default function infoButtonClick() {
+export default function infoButtonClick(e) {
   const body = document.getElementsByTagName('body')[0];
+
   if (!body.classList.contains('info')) {
     body.classList.remove('info-out');
     body.classList.add('info');
@@ -9,4 +10,6 @@ export default function infoButtonClick() {
     body.classList.remove('info');
     body.classList.add('info-out');
   }
+
+  e.preventDefault();
 }
