@@ -11,7 +11,7 @@ const LINKS_SEP = 0;
 const LINKS_LENGTH = 30;
 const STRING_WIDTH = 3;
 const BALLOON_SIZE = 80;
-const GROUND_Y = SCENE_HEIGHT - 20;
+const GROUND_Y = SCENE_HEIGHT - 60;
 
 export default function animateScene(canvas) {
   // create an engine and a renderer

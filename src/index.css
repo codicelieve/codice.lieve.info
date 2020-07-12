@@ -1,0 +1,19 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+div.footer {
+  position: absolute;
+  right: 50px;
+  bottom: 20px;
+  font-size: 0.75em;
+  font-family: courier new;
+  background-color: black;
+  color: white;
+}
+
+div.footer a {
+  color: white;
+}
