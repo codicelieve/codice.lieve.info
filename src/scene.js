@@ -25,7 +25,7 @@ export default function animateScene(canvas) {
 
   // Ground
   const ground = Bodies.rectangle(
-    SCENE_WIDTH / 2, GROUND_Y + 50, SCENE_WIDTH + 10, 100, {isStatic: true},
+    SCENE_WIDTH / 2, GROUND_Y + 50, SCENE_WIDTH * 10, 100, {isStatic: true},
   );
 
   // Balloon string
