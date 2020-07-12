@@ -75,14 +75,21 @@ Composite.add(string, Constraint.create({
 Composite.add(string, balloon);
 
 // Apply forces to the balloon
-Events.on(engine, 'afterUpdate', (e) => {
+
+function applyForces(t) {
   // Force upwards
   Body.applyForce(balloon, {x: balloon.position.x, y: -10}, {x: 0, y: -0.001});
+
   // Wind force
   Body.applyForce(balloon,
     {x: -10, y: balloon.position.y},
-    {x: -0.00002 * (6 + Math.sin(e.timestamp / 1000)), y: 0});
-});
+    {
+      x: -0.00002 * (3 + Math.sin((t * 3) / 1000)) * (3 + Math.sin(t / 1000)),
+      y: 0,
+    });
+}
+
+Events.on(engine, 'afterUpdate', (e) => applyForces(e.timestamp));
 
 // add all of the bodies to the world
 World.add(engine.world, [string, ground]);
