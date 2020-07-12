@@ -17,10 +17,13 @@ const GROUND_Y = SCENE_HEIGHT - 20;
 // create an engine
 const engine = Engine.create();
 
+const canvas = document.getElementById('canvas');
+
 // create a renderer
 const render = Render.create({
   element: document.body,
   engine,
+  canvas,
   options: {width: SCENE_WIDTH, height: SCENE_HEIGHT},
 });
 
@@ -103,8 +106,12 @@ const mouseConstraint = MouseConstraint.create(
 World.add(engine.world, mouseConstraint);
 render.mouse = mouse;
 
-// run the engine
+// run the engine and the renderer
 Engine.run(engine);
-
-// run the renderer
 Render.run(render);
+
+// This resizes the canvas, but doesn't reposition the scene elements
+// window.addEventListener('resize', () => {
+//   canvas.width = window.innerWidth;
+//   canvas.height = window.innerHeight;
+// });
