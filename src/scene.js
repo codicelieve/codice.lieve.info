@@ -107,10 +107,4 @@ export default function animateScene(canvas) {
   // run the engine and the renderer
   Engine.run(engine);
   Render.run(render);
-
-  // This resizes the canvas, but doesn't reposition the scene elements
-  // window.addEventListener('resize', () => {
-  //   canvas.width = window.innerWidth;
-  //   canvas.height = window.innerHeight;
-  // });
 }
