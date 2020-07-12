@@ -7,10 +7,11 @@ html, body {
 div.footer {
   position: absolute;
   right: 2em;
+  padding-left: 2em;
   bottom: 20px;
   font-size: 0.75em;
   font-family: courier new;
-  background-color: black;
+  background-color: #0f0f13;
   color: white;
 }
 
