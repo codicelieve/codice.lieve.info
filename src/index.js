@@ -1,7 +1,7 @@
 import {
   Bodies, Body, Composite, Composites, Constraint, Engine, Events,
   Mouse, MouseConstraint, Render, World,
-} from '../node_modules/matter-js/build/matter.min';
+} from './matter';
 
 const SCENE_WIDTH = window.innerWidth;
 const SCENE_HEIGHT = window.innerHeight;
