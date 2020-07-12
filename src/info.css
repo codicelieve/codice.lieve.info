@@ -36,7 +36,7 @@ div.info {
   padding-bottom: 2em;
   border-radius: 5px;
   line-height: 1.5em;
-  font-family: courier new;
+  font-family: "Lucida Console", Courier, monospace;
   display: none;
 }
 
@@ -60,8 +60,9 @@ body.info div.info {
 @media only screen and (max-width: 600px) {
   div.info {
     left: 2vw;
-    width: 92vw;
+    width: 90vw;
     height: auto;
-    padding: 2vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
   }
 }
