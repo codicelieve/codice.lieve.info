@@ -34,6 +34,7 @@ module.exports = {
       patterns: [
         {from: 'assets/robots.txt', to: ''},
         {from: 'assets/README.md', to: ''},
+        {from: 'assets/CNAME', to: ''},
       ],
     }),
     new HtmlWebpackPlugin({
