@@ -6,7 +6,7 @@ html, body {
 
 div.footer {
   position: absolute;
-  right: 50px;
+  right: 2em;
   bottom: 20px;
   font-size: 0.75em;
   font-family: courier new;
