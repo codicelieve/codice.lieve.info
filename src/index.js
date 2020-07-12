@@ -6,20 +6,17 @@ import {
 const SCENE_WIDTH = window.innerWidth;
 const SCENE_HEIGHT = window.innerHeight;
 const STRING_X = SCENE_WIDTH - 50;
-const LINKS_NUM = 8;
-const LINKS_SEP = 10;
-const LINKS_LENGTH = 40;
-const STRING_WIDTH = 5;
+const LINKS_NUM = 12;
+const LINKS_SEP = 0;
+const LINKS_LENGTH = 30;
+const STRING_WIDTH = 3;
 const BALLOON_SIZE = 80;
-
 const GROUND_Y = SCENE_HEIGHT - 20;
-
-// create an engine
-const engine = Engine.create();
 
 const canvas = document.getElementById('canvas');
 
-// create a renderer
+// create an engine and a renderer
+const engine = Engine.create();
 const render = Render.create({
   element: document.body,
   engine,
@@ -27,10 +24,12 @@ const render = Render.create({
   options: {width: SCENE_WIDTH, height: SCENE_HEIGHT},
 });
 
+// Ground
 const ground = Bodies.rectangle(
   SCENE_WIDTH / 2, GROUND_Y + 50, SCENE_WIDTH + 10, 100, {isStatic: true},
 );
 
+// Balloon string
 const group = Body.nextGroup(true);
 
 const string = Composites.stack(
@@ -40,39 +39,38 @@ const string = Composites.stack(
   LINKS_SEP, 0,
   (x, y) => Bodies.rectangle(
     x, y, LINKS_LENGTH, STRING_WIDTH,
-    {
-      collisionFilter: {group},
-      density: 0.0001,
-    },
+    {collisionFilter: {group}, density: 0.0001},
   ),
 );
 Composites.chain(string, 0.5, 0, -0.5, 0,
-  {stiffness: 0.8, length: 2, render: {type: 'line'}});
+  {render: {type: 'line'}});
+
+const firstLink = string.bodies[0];
+const lastLink = string.bodies[LINKS_NUM - 1];
 
 Composite.add(string, Constraint.create({
   pointA: {
-    x: string.bodies[LINKS_NUM - 1].position.x,
-    y: string.bodies[LINKS_NUM - 1].position.y,
+    x: lastLink.position.x + LINKS_LENGTH / 2,
+    y: lastLink.position.y,
   },
-  bodyB: string.bodies[LINKS_NUM - 1],
+  bodyB: lastLink,
   pointB: {x: LINKS_LENGTH / 2, y: 0},
-  stiffness: 0.5,
 }));
 
 // Attach a balloon to the string
+// TODO: balloon and string shouldn't collide
 const balloon = Bodies.rectangle(
-  string.bodies[0].position.x - LINKS_LENGTH / 2 - BALLOON_SIZE / 2,
-  string.bodies[0].position.y - BALLOON_SIZE / 2,
+  firstLink.position.x - LINKS_LENGTH / 2 - BALLOON_SIZE / 2,
+  firstLink.position.y - BALLOON_SIZE / 2,
   BALLOON_SIZE, BALLOON_SIZE,
   {density: 0.0001},
 );
 
 Composite.add(string, Constraint.create({
-  bodyA: string.bodies[0],
+  bodyA: firstLink,
   pointA: {x: -LINKS_LENGTH / 2, y: 0},
   bodyB: balloon,
   pointB: {x: BALLOON_SIZE / 2, y: BALLOON_SIZE / 2},
-  stiffness: 0.5,
 }));
 
 Composite.add(string, balloon);
@@ -100,7 +98,7 @@ World.add(engine.world, [string, ground]);
 // add mouse control
 const mouse = Mouse.create(render.canvas);
 const mouseConstraint = MouseConstraint.create(
-  engine, {mouse, constraint: {stiffness: 0.2, render: {visible: false}}},
+  engine, {mouse, constraint: {stiffness: 0.02, render: {visible: false}}},
 );
 
 World.add(engine.world, mouseConstraint);
