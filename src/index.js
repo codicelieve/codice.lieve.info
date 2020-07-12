@@ -3,9 +3,9 @@ import {
   Mouse, MouseConstraint, Render, World,
 } from '../node_modules/matter-js/build/matter.min';
 
-const SCENE_WIDTH = 800;
-const SCENE_HEIGHT = 600;
-const STRING_X = 350;
+const SCENE_WIDTH = window.innerWidth;
+const SCENE_HEIGHT = window.innerHeight;
+const STRING_X = SCENE_WIDTH - 50;
 const LINKS_NUM = 8;
 const LINKS_SEP = 10;
 const LINKS_LENGTH = 40;
@@ -21,6 +21,7 @@ const engine = Engine.create();
 const render = Render.create({
   element: document.body,
   engine,
+  options: {width: SCENE_WIDTH, height: SCENE_HEIGHT},
 });
 
 const ground = Bodies.rectangle(
@@ -30,7 +31,10 @@ const ground = Bodies.rectangle(
 const group = Body.nextGroup(true);
 
 const string = Composites.stack(
-  STRING_X, GROUND_Y - STRING_WIDTH / 2, LINKS_NUM, 1, LINKS_SEP, 0,
+  STRING_X - (LINKS_LENGTH + LINKS_SEP) * (LINKS_NUM - 0.5),
+  GROUND_Y - STRING_WIDTH / 2,
+  LINKS_NUM, 1,
+  LINKS_SEP, 0,
   (x, y) => Bodies.rectangle(
     x, y, LINKS_LENGTH, STRING_WIDTH,
     {
