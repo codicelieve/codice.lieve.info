@@ -49,7 +49,7 @@ export default function animateScene(canvas) {
     ),
   );
   Composites.chain(string, 0.5, 0, -0.5, 0,
-    {render: {type: 'line'}});
+    {stiffness: 0.9, render: {type: 'line'}});
 
   const firstLink = string.bodies[0];
   const lastLink = string.bodies[LINKS_NUM - 1];
