@@ -88,7 +88,7 @@ export default function animateScene(canvas) {
     bodyA: firstLink,
     pointA: {x: -LINKS_LENGTH / 2, y: 0},
     bodyB: balloon,
-    pointB: {x: 0, y: (balloon.bounds.max.y - balloon.bounds.min.y) / 2},
+    pointB: {x: 0, y: balloon.bounds.max.y - balloon.position.y},
   }));
 
   Composite.add(string, balloon);
