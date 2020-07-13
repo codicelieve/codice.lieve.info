@@ -3,7 +3,9 @@ import {
   Mouse, MouseConstraint, Render, Vertices, World,
 } from './matter';
 
-window.decomp = require('poly-decomp');
+// It would be needed if there were convex polygonx
+// window.decomp = require('poly-decomp');
+window.decomp = true;
 
 const SCENE_WIDTH = window.innerWidth;
 const SCENE_HEIGHT = window.innerHeight;
@@ -61,10 +63,9 @@ export default function animateScene(canvas) {
     firstLink.position.x - LINKS_LENGTH / 2,
     firstLink.position.y,
     Vertices.fromPath(`
-0 0 4.9 -1.8   23.6 -28.5   28.3 -49.1   22.7 -66.7   11 -78.9
-0 -82
--11 -78.9  -22.7 -66.7  -28.3 -49.1  -23.6 -28.5  -4.9 -1.8 0 0`),
-    {density: 0.0001, collisionFilter: {group}},
+0 0   4.9 -1.8   23.6 -28.5   28.3 -49.1   22.7 -66.7   11 -78.9
+0 -82  -11 -78.9  -22.7 -66.7  -28.3 -49.1  -23.6 -28.5  -4.9 -1.8`),
+    {density: 0.0001},
   );
   Body.scale(balloon, 1.4, 1.4); // I made it too small...
   // Raise up the balloon to align the bottom with the end of the string
