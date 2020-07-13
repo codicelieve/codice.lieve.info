@@ -65,7 +65,7 @@ export default function animateScene(canvas) {
     Vertices.fromPath(`
 0 0   4.9 -1.8   23.6 -28.5   28.3 -49.1   22.7 -66.7   11 -78.9
 0 -82  -11 -78.9  -22.7 -66.7  -28.3 -49.1  -23.6 -28.5  -4.9 -1.8`),
-    {density: 0.0001},
+    {density: 0.0001, restitution: 0.5},
   );
   Body.scale(balloon, 1.4, 1.4); // I made it too small...
   // Raise up the balloon to align the bottom with the end of the string
