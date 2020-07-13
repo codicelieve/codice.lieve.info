@@ -70,6 +70,10 @@ export default function animateScene(canvas) {
   // Raise up the balloon to align the bottom with the end of the string
   Body.translate(balloon, {x: 0, y: balloon.position.y - balloon.bounds.max.y});
 
+  // Store the vertical section now that the balloon is vertical so it's maximal
+  // we will use it to approximate the flow of air hitting the balloon
+  balloon.maxSection = balloon.bounds.max.y - balloon.bounds.min.y;
+
   Composite.add(string, Constraint.create({
     bodyA: firstLink,
     pointA: {x: -LINKS_LENGTH / 2, y: 0},
@@ -87,10 +91,13 @@ export default function animateScene(canvas) {
       {x: balloon.position.x, y: -10}, {x: 0, y: -0.001});
 
     // Wind force
+    const section = balloon.bounds.max.y - balloon.bounds.min.y;
+    const flow = section / balloon.maxSection; // flow factor between 0 and 1
     Body.applyForce(balloon,
       {x: -10, y: balloon.position.y},
       {
-        x: -0.00002 * (3 + Math.sin((t * 3) / 1000)) * (3 + Math.sin(t / 1000)),
+        x: -0.00002 * flow
+          * (3 + Math.sin((t * 3) / 1000)) * (3 + Math.sin(t / 1000)),
         y: 0,
       });
   }
