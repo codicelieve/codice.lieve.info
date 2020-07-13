@@ -1,6 +1,7 @@
 const path = require('path');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -39,6 +40,12 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
+    }),
+    new HtmlWebpackPartialsPlugin({
+      path: './src/analytics.html',
+      location: 'head',
+      priority: 'high',
+      options: {ga_property_id: 'UA-172517233-1'},
     }),
     new MiniCssExtractPlugin(),
   ],
