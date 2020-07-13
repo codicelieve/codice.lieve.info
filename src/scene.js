@@ -29,8 +29,6 @@ export default function animateScene(canvas) {
   );
 
   // Balloon string
-  const group = Body.nextGroup(true);
-
   const string = Composites.stack(
     STRING_X - (LINKS_LENGTH + LINKS_SEP) * (LINKS_NUM - 0.5),
     GROUND_Y - STRING_WIDTH / 2,
@@ -38,7 +36,7 @@ export default function animateScene(canvas) {
     LINKS_SEP, 0,
     (x, y) => Bodies.rectangle(
       x, y, LINKS_LENGTH, STRING_WIDTH,
-      {collisionFilter: {group}, density: 0.0001},
+      {density: 0.0001},
     ),
   );
   Composites.chain(string, 0.5, 0, -0.5, 0,
