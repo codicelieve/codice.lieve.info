@@ -1,3 +1,5 @@
+/* eslint no-bitwise: 0 */
+
 import {
   Bodies, Body, Composite, Composites, Constraint, Engine, Events,
   Mouse, MouseConstraint, Render, Vertices, World,
@@ -15,6 +17,10 @@ const LINKS_SEP = 0;
 const LINKS_LENGTH = SCENE_HEIGHT > 600 ? 30 : 20;
 const STRING_WIDTH = 3;
 const GROUND_Y = SCENE_HEIGHT - 60;
+
+const COL_DEFAULT = 0x01;
+const COL_STRING = 0x02;
+const COL_BALLOON = 0x04;
 
 export default function animateScene(canvas) {
   // create an engine and a renderer
@@ -39,7 +45,7 @@ export default function animateScene(canvas) {
     LINKS_SEP, 0,
     (x, y) => Bodies.rectangle(
       x, y, LINKS_LENGTH, STRING_WIDTH,
-      {density: 0.0001},
+      {density: 0.0001, collisionFilter: {category: COL_STRING}},
     ),
   );
   Composites.chain(string, 0.5, 0, -0.5, 0,
@@ -58,14 +64,17 @@ export default function animateScene(canvas) {
   }));
 
   // Attach a balloon to the string
-  // TODO: balloon and string shouldn't collide
   const balloon = Bodies.fromVertices(
     firstLink.position.x - LINKS_LENGTH / 2,
     firstLink.position.y,
     Vertices.fromPath(`
 0 0   4.9 -1.8   23.6 -28.5   28.3 -49.1   22.7 -66.7   11 -78.9
 0 -82  -11 -78.9  -22.7 -66.7  -28.3 -49.1  -23.6 -28.5  -4.9 -1.8`),
-    {density: 0.0001, restitution: 0.5},
+    {
+      density: 0.0001,
+      restitution: 0.5,
+      collisionFilter: {mask: COL_DEFAULT | COL_BALLOON},
+    },
   );
   Body.scale(balloon, 1.4, 1.4); // I made it too small...
   // Raise up the balloon to align the bottom with the end of the string
@@ -111,7 +120,11 @@ export default function animateScene(canvas) {
   // add mouse control
   const mouse = Mouse.create(render.canvas);
   const mouseConstraint = MouseConstraint.create(
-    engine, {mouse, constraint: {stiffness: 0.02, render: {visible: false}}},
+    engine, {
+      mouse,
+      constraint: {stiffness: 0.02, render: {visible: false}},
+      collisionFilter: {mask: COL_DEFAULT | COL_STRING | COL_BALLOON},
+    },
   );
 
   World.add(engine.world, mouseConstraint);
