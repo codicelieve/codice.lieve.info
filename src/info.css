@@ -45,8 +45,12 @@ div.info {
   display: none;
 }
 
-div.info h2 {
+div.info div.title {
   margin-bottom: 0.5em;
+}
+
+div.info h2 {
+  margin-bottom: 0;
 }
 
 div.info ul {
@@ -56,6 +60,10 @@ div.info ul {
 
 div.info a {
   color: black;
+}
+
+div.info small.ipa {
+  font-family: initial;
 }
 
 /* in the center, full width, for narrow screens */
