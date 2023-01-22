@@ -32,3 +32,17 @@ npm run build
 ```
 
 Built artifacts will be in the `./dist` directory.
+
+
+Manual deployment
+-----------------
+
+Because travis has bitrotten, in order to deploy the website manually:
+
+```
+git clone git@github.com:codicelieve/codicelieve.github.io.git
+npm run build
+rsync -av dist/ codicelieve.github.io/
+```
+
+then commit and push from `codicelieve.github.io`.
