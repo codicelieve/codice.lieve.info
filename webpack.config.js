@@ -36,6 +36,7 @@ module.exports = {
         {from: 'assets/robots.txt', to: ''},
         {from: 'assets/README.md', to: ''},
         {from: 'assets/CNAME', to: ''},
+        {from: 'assets/.nojekyll', to: ''},
       ],
     }),
     new HtmlWebpackPlugin({
